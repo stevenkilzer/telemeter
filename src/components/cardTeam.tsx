@@ -8,7 +8,7 @@ interface CardTeamProps {
 }
 
 export const CardTeam: React.FC<CardTeamProps> = ({ title, image, activities }) => {
-  return (
+      return (
     <div className="flex items-center py-4 border-t border-border">
       <div className="w-16 h-16 mr-4 bg-muted" style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
       <div className="flex-grow">
