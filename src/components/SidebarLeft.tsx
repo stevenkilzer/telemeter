@@ -48,14 +48,12 @@ export function SidebarLeft() {
   
     return (
       <Sidebar
-        collapsed={isCollapsed}
         collapsible="icon"
         side="left"
-        onCollapse={(collapsed) => setIsCollapsed(collapsed)}
       >
         <SidebarHeader className="h-[40px] flex mb-1 mt-2.5">
-          <div className={`text-lg font-medium ${isCollapsed ? 'pl-0' : 'pl-2'}`}>
-            {isCollapsed ? "W" : "W"}
+          <div className="text-lg font-medium pl-2">
+            W
           </div>
         </SidebarHeader>
         <SidebarContent>
