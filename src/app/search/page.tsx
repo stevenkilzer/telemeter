@@ -1,14 +1,18 @@
-import { PageHeader } from '@/components/PageHeader';
+'use client';
+
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+const CarSelector = dynamic(() => import('@/components/CarSelector'), { 
+  ssr: false 
+});
 
 export default function SearchPage() {
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Search"
-        subtitle="Find Content & Laps"
-      />
-      {/* Add your search functionality here */}
-      <p>Implement your search functionality in this section.</p>
+      <h1>Search</h1>
+      <p>Find Content & Laps</p>
+      <CarSelector />
     </div>
   );
 }
