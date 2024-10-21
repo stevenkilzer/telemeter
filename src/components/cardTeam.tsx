@@ -15,7 +15,7 @@ export const CardTeam: React.FC<CardTeamProps> = ({ title, image, activities }) 
         <h3 className="text-lg font-semibold text-foreground">{title}</h3>
         <div className="flex flex-wrap gap-4 mt-2">
           {activities.map((activity, index) => (
-            <div key={index} className="flex items-center space-x-2">
+            <div key={index} className="flex items-center space-x-4">
               <Check className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">{activity}</span>
             </div>
