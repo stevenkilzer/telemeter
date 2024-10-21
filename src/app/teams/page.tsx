@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { PageHeader } from '@/components/PageHeader';
-import { CardTeam } from '@/components/CardTeam';
 
 export default function TeamsPage() {
   const teams = [
@@ -33,16 +32,7 @@ export default function TeamsPage() {
           onClick: () => console.log("Create a Team clicked"),
         }}
       />
-      <div className="bg-background rounded-lg overflow-hidden">
-        {teams.map((team, index) => (
-          <CardTeam
-            key={index}
-            title={team.title}
-            image={team.image}
-            activities={team.activities}
-          />
-        ))}
-      </div>
+    
     </div>
   );
 }
