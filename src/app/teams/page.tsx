@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PageHeader } from '@/components/PageHeader';
-import { CardTeam } from '@/components/CardTeam';  // Make sure this path is correct
+import { CardTeam } from '@/components/CardTeam';  // Updated import path
 
 export default function TeamsPage() {
   const teams = [
