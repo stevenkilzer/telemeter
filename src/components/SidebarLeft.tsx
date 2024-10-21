@@ -1,57 +1,89 @@
 'use client';
 
-import React from 'react';
-import { Home, Search, Bell, BarChart2, Settings, Users, Radio, Ghost, Folder, Sun, User, HelpCircle, ChevronDown, Plus } from 'lucide-react';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
-  SidebarFooter,
-} from "@/components/ui/sidebar";
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton, SidebarFooter } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import Link from 'next/link';
+
+const IconPlaceholder = () => (
+  <div className="w-5 h-5 bg-gray-200 rounded animate-pulse" />
+);
+
+const iconComponents = {
+  Home: dynamic(() => import('lucide-react').then((mod) => mod.Home), { loading: () => <IconPlaceholder />, ssr: false }),
+  Search: dynamic(() => import('lucide-react').then((mod) => mod.Search), { loading: () => <IconPlaceholder />, ssr: false }),
+  Bell: dynamic(() => import('lucide-react').then((mod) => mod.Bell), { loading: () => <IconPlaceholder />, ssr: false }),
+  BarChart2: dynamic(() => import('lucide-react').then((mod) => mod.BarChart2), { loading: () => <IconPlaceholder />, ssr: false }),
+  Settings: dynamic(() => import('lucide-react').then((mod) => mod.Settings), { loading: () => <IconPlaceholder />, ssr: false }),
+  Users: dynamic(() => import('lucide-react').then((mod) => mod.Users), { loading: () => <IconPlaceholder />, ssr: false }),
+  Radio: dynamic(() => import('lucide-react').then((mod) => mod.Radio), { loading: () => <IconPlaceholder />, ssr: false }),
+  Ghost: dynamic(() => import('lucide-react').then((mod) => mod.Ghost), { loading: () => <IconPlaceholder />, ssr: false }),
+  Folder: dynamic(() => import('lucide-react').then((mod) => mod.Folder), { loading: () => <IconPlaceholder />, ssr: false }),
+  User: dynamic(() => import('lucide-react').then((mod) => mod.User), { loading: () => <IconPlaceholder />, ssr: false }),
+  HelpCircle: dynamic(() => import('lucide-react').then((mod) => mod.HelpCircle), { loading: () => <IconPlaceholder />, ssr: false }),
+  ChevronDown: dynamic(() => import('lucide-react').then((mod) => mod.ChevronDown), { loading: () => <IconPlaceholder />, ssr: false }),
+  Plus: dynamic(() => import('lucide-react').then((mod) => mod.Plus), { loading: () => <IconPlaceholder />, ssr: false }),
+};
 
 export function SidebarLeft() {
-  return (
-    <Sidebar collapsible="icon" side="left">
-      <SidebarHeader className="h-[40px]">
-        <div>Logo</div>
-      </SidebarHeader>
+    const [isCollapsed, setIsCollapsed] = useState(false);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsCollapsed(window.innerWidth < 768);
+      };
+  
+      handleResize();
+      window.addEventListener('resize', handleResize);
+  
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
+    const IconComponent = ({ name, className = '' }: { name: keyof typeof iconComponents, className?: string }) => {
+      const Icon = iconComponents[name];
+      return <Icon className={className} />;
+    };
+  
+    return (
+      <Sidebar
+        defaultCollapsed={isCollapsed}
+        collapsible="icon"
+        side="left"
+        onCollapsed={(collapsed) => setIsCollapsed(collapsed)}
+      >
+        <SidebarHeader className="h-[40px] flex mb-1 mt-2.5">
+          <div className={`text-lg font-medium ${isCollapsed ? 'pl-0' : 'pl-2'}`}>
+            {isCollapsed ? "W" : "W"}
+          </div>
+        </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Home">
-                  <a href="/">
-                    <Home />
+                  <Link href="/">
+                    <IconComponent name="Home" className="w-5 h-5" />
                     <span>Home</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Search">
-                  <a href="/search">
-                    <Search />
+                  <Link href="/search">
+                    <IconComponent name="Search" className="w-5 h-5" />
                     <span>Search</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Notifications">
-                  <a href="/notifications">
-                    <Bell />
+                  <Link href="/notifications">
+                    <IconComponent name="Bell" className="w-5 h-5" />
                     <span>Notifications</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -64,42 +96,42 @@ export function SidebarLeft() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Analysis">
-                  <a href="/analysis">
-                    <BarChart2 />
+                  <Link href="/analysis">
+                    <IconComponent name="BarChart2" className="w-5 h-5" />
                     <span>Analysis</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Setups">
-                  <a href="/setups">
-                    <Settings />
+                  <Link href="/setups">
+                    <IconComponent name="Settings" className="w-5 h-5" />
                     <span>Setups</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Ghosts">
-                  <a href="/ghosts">
-                    <Ghost />
+                  <Link href="/ghosts">
+                    <IconComponent name="Ghost" className="w-5 h-5" />
                     <span>Ghosts</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Teams">
-                  <a href="/teams">
-                    <Users />
+                  <Link href="/teams">
+                    <IconComponent name="Users" className="w-5 h-5" />
                     <span>Teams</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Streams">
-                  <a href="/streams">
-                    <Radio />
+                  <Link href="/streams">
+                    <IconComponent name="Radio" className="w-5 h-5" />
                     <span>Streams</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -114,24 +146,24 @@ export function SidebarLeft() {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="Projects">
-                      <Folder />
+                      <IconComponent name="Folder" className="w-5 h-5" />
                       <span>Projects</span>
-                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                      <IconComponent name="ChevronDown" className="w-5 h-5 ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/projects/sample-project">Sample Project</a>
+                          <Link href="/projects/sample-project">Sample Project</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/projects/new">
-                            <Plus className="mr-2 h-4 w-4" />
+                          <Link href="/projects/new">
+                            <IconComponent name="Plus" className="w-4 h-4 mr-2" />
                             New Project
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
@@ -152,26 +184,26 @@ export function SidebarLeft() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Account">
-                  <a href="/account">
-                    <User />
+                  <Link href="/account">
+                    <IconComponent name="User" className="w-5 h-5" />
                     <span>Account</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Settings">
-                  <a href="/settings">
-                    <Settings />
+                  <Link href="/settings">
+                    <IconComponent name="Settings" className="w-5 h-5" />
                     <span>Settings</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Help">
-                  <a href="/help">
-                    <HelpCircle />
+                  <Link href="/help">
+                    <IconComponent name="HelpCircle" className="w-5 h-5" />
                     <span>Help</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

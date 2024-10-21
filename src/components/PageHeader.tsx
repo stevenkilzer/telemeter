@@ -18,21 +18,23 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, primaryCTA, secondaryCTA }: PageHeaderProps) {
   return (
-    <div className="max-w-[520px] mb-6">
-      <h1 className="text-2xl font-bold mb-2">{title}</h1>
-      {subtitle && <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>}
-      {(primaryCTA || secondaryCTA) && (
-        <div className="flex gap-4">
-          {primaryCTA && (
-            <Button onClick={primaryCTA.onClick}>{primaryCTA.label}</Button>
-          )}
-          {secondaryCTA && (
-            <Button variant="ghost" onClick={secondaryCTA.onClick}>
-              {secondaryCTA.label}
-            </Button>
-          )}
-        </div>
-      )}
+    <div className=""> 
+      <div className="max-w-[520px] mb-6">
+        <h1 className="text-2xl font-medium mb-2">{title}</h1>
+        {subtitle && <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>}
+        {(primaryCTA || secondaryCTA) && (
+          <div className="flex gap-4">
+            {primaryCTA && (
+              <Button onClick={primaryCTA.onClick}>{primaryCTA.label}</Button>
+            )}
+            {secondaryCTA && (
+              <Button variant="ghost" onClick={secondaryCTA.onClick}>
+                {secondaryCTA.label}
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

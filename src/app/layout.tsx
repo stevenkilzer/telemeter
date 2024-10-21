@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react';
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { SidebarLeft } from '@/components/SidebarLeft';
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { PageBreadcrumb } from '@/components/PageBreadcrumb';
+import TopBar from '@/components/TopBar';
 
 import '@/app/globals.css';
 
@@ -23,17 +23,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <div className="flex h-screen overflow-hidden">
+            <div className="flex w-full overflow-hidden">
               <SidebarLeft />
-              <main className="flex-1 overflow-y-auto">
-                <div className="flex items-center gap-4 p-4">
-                  <SidebarTrigger />
-                  <PageBreadcrumb />
-                </div>
-                <div className="p-6">
-                  {children}
-                </div>
-              </main>
+              <div className="flex-1 flex flex-col overflow-hidden">
+                <TopBar />
+                <main className="flex-1 overflow-y-auto">
+                  <div className="p-8">
+                    {children}
+                  </div>
+                </main>
+              </div>
             </div>
           </SidebarProvider>
         </ThemeProvider>

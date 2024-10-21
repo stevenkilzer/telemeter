@@ -2,7 +2,10 @@
 
 import { useTheme } from "next-themes"
 import { SidebarMenuButton } from "@/components/ui/sidebar"
-import { Sun, Moon } from "lucide-react"
+import dynamic from 'next/dynamic'
+
+const Sun = dynamic(() => import('lucide-react').then((mod) => mod.Sun), { ssr: false });
+const Moon = dynamic(() => import('lucide-react').then((mod) => mod.Moon), { ssr: false });
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
