@@ -48,168 +48,168 @@ export function SidebarLeft() {
   
     return (
       <Sidebar
-        defaultCollapsed={isCollapsed}
+        collapsed={isCollapsed}
         collapsible="icon"
         side="left"
-        onCollapsed={(collapsed) => setIsCollapsed(collapsed)}
+        onCollapse={(collapsed) => setIsCollapsed(collapsed)}
       >
         <SidebarHeader className="h-[40px] flex mb-1 mt-2.5">
           <div className={`text-lg font-medium ${isCollapsed ? 'pl-0' : 'pl-2'}`}>
             {isCollapsed ? "W" : "W"}
           </div>
         </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Home">
-                  <Link href="/">
-                    <IconComponent name="Home" className="w-5 h-5" />
-                    <span>Home</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Search">
-                  <Link href="/search">
-                    <IconComponent name="Search" className="w-5 h-5" />
-                    <span>Search</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Notifications">
-                  <Link href="/notifications">
-                    <IconComponent name="Bell" className="w-5 h-5" />
-                    <span>Notifications</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Content</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Analysis">
-                  <Link href="/analysis">
-                    <IconComponent name="BarChart2" className="w-5 h-5" />
-                    <span>Analysis</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Setups">
-                  <Link href="/setups">
-                    <IconComponent name="Settings" className="w-5 h-5" />
-                    <span>Setups</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Ghosts">
-                  <Link href="/ghosts">
-                    <IconComponent name="Ghost" className="w-5 h-5" />
-                    <span>Ghosts</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Teams">
-                  <Link href="/teams">
-                    <IconComponent name="Users" className="w-5 h-5" />
-                    <span>Teams</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Streams">
-                  <Link href="/streams">
-                    <IconComponent name="Radio" className="w-5 h-5" />
-                    <span>Streams</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <Collapsible defaultOpen className="group/collapsible">
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
                 <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton tooltip="Projects">
-                      <IconComponent name="Folder" className="w-5 h-5" />
-                      <span>Projects</span>
-                      <IconComponent name="ChevronDown" className="w-5 h-5 ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link href="/projects/sample-project">Sample Project</Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link href="/projects/new">
-                            <IconComponent name="Plus" className="w-4 h-4 mr-2" />
-                            New Project
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
+                  <SidebarMenuButton asChild tooltip="Home">
+                    <Link href="/">
+                      <IconComponent name="Home" className="w-5 h-5" />
+                      <span>Home</span>
+                    </Link>
+                  </SidebarMenuButton>
                 </SidebarMenuItem>
-              </Collapsible>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Search">
+                    <Link href="/search">
+                      <IconComponent name="Search" className="w-5 h-5" />
+                      <span>Search</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Notifications">
+                    <Link href="/notifications">
+                      <IconComponent name="Bell" className="w-5 h-5" />
+                      <span>Notifications</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
 
-      <SidebarFooter>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <ThemeToggle />
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Account">
-                  <Link href="/account">
-                    <IconComponent name="User" className="w-5 h-5" />
-                    <span>Account</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Settings">
-                  <Link href="/settings">
-                    <IconComponent name="Settings" className="w-5 h-5" />
-                    <span>Settings</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Help">
-                  <Link href="/help">
-                    <IconComponent name="HelpCircle" className="w-5 h-5" />
-                    <span>Help</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarFooter>
-    </Sidebar>
-  );
+          <SidebarGroup>
+            <SidebarGroupLabel>Content</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Analysis">
+                    <Link href="/analysis">
+                      <IconComponent name="BarChart2" className="w-5 h-5" />
+                      <span>Analysis</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Setups">
+                    <Link href="/setups">
+                      <IconComponent name="Settings" className="w-5 h-5" />
+                      <span>Setups</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Ghosts">
+                    <Link href="/ghosts">
+                      <IconComponent name="Ghost" className="w-5 h-5" />
+                      <span>Ghosts</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Teams">
+                    <Link href="/teams">
+                      <IconComponent name="Users" className="w-5 h-5" />
+                      <span>Teams</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Streams">
+                    <Link href="/streams">
+                      <IconComponent name="Radio" className="w-5 h-5" />
+                      <span>Streams</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          <SidebarGroup>
+            <SidebarGroupLabel>Projects</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <Collapsible defaultOpen className="group/collapsible">
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton tooltip="Projects">
+                        <IconComponent name="Folder" className="w-5 h-5" />
+                        <span>Projects</span>
+                        <IconComponent name="ChevronDown" className="w-5 h-5 ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        <SidebarMenuSubItem>
+                          <SidebarMenuSubButton asChild>
+                            <Link href="/projects/sample-project">Sample Project</Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                        <SidebarMenuSubItem>
+                          <SidebarMenuSubButton asChild>
+                            <Link href="/projects/new">
+                              <IconComponent name="Plus" className="w-4 h-4 mr-2" />
+                              New Project
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+
+        <SidebarFooter>
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <ThemeToggle />
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Account">
+                    <Link href="/account">
+                      <IconComponent name="User" className="w-5 h-5" />
+                      <span>Account</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Settings">
+                    <Link href="/settings">
+                      <IconComponent name="Settings" className="w-5 h-5" />
+                      <span>Settings</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Help">
+                    <Link href="/help">
+                      <IconComponent name="HelpCircle" className="w-5 h-5" />
+                      <span>Help</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarFooter>
+      </Sidebar>
+    );
 }
