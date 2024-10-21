@@ -7,16 +7,8 @@ export default function SamplePage() {
   return (
     <div>
       <PageHeader
-        title="Sample Page"
-        subtitle="This is a sample page for the automotive telemetry data analysis tool."
-        primaryCTA={{
-          label: "Primary Action",
-          onClick: () => console.log("Primary action clicked"),
-        }}
-        secondaryCTA={{
-          label: "Secondary Action",
-          onClick: () => console.log("Secondary action clicked"),
-        }}
+        title="Recent Activity"
+        subtitle="Your recent activity."
       />
       <div>
         {/* Add your page content here */}

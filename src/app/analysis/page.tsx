@@ -1,3 +1,5 @@
+'use client';
+
 import { PageHeader } from '@/components/PageHeader';
 
 export default function AnalysisPage() {
@@ -6,6 +8,10 @@ export default function AnalysisPage() {
       <PageHeader
         title="Analysis"
         subtitle="Select any number of laps to analyze. The first lap listed is the reference lap to which all other laps will be compared."
+        primaryCTA={{
+          label: "Create New Analysis",
+          onClick: () => console.log("Primary action clicked"),
+        }}
       />
       {/* Add your analysis content here */}
       <p>Implement your lap analysis functionality in this section.</p>

@@ -10,7 +10,7 @@ const TopBar: React.FC = () => {
 
   return (
     <div className="w-full border-b border-border bg-background">
-      <div className="px-6 py-4">
+      <div className="px-4 py-2">
         <div className="flex items-center gap-4">
           <SidebarTrigger />
           <PageBreadcrumb />

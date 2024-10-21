@@ -25,6 +25,7 @@ body {
     --popover: 0 0% 99%;    
     --popover-foreground: 222.2 84% 4.9%;    
     --primary: 150 65% 64%;    
+    --accentborder: 154 100% 34%;  
     --primary-foreground: 2 8% 23%;    
     --secondary: 0 0% 95%;    
     --secondary-foreground: 222.2 47.4% 11.2%;    
@@ -60,7 +61,8 @@ body {
     --card-foreground: 210 40% 98%;    
     --popover: 0 0% 12%;    
     --popover-foreground: 210 40% 98%;    
-    --primary: 154 100% 17%;    
+    --primary: 154 100% 17%; 
+    --accentborder: 154 100% 34%;   
     --primary-foreground: 222 0% 98%;    
     --secondary: 0 0 12%;    
     --secondary-foreground: 210 40% 98%;    
