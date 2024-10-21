@@ -4,58 +4,68 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
 interface Car {
-  CarName: string;
+  value: string;
+  label: string;
 }
 
-export default function CarSelector() {
+const CarSelector: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedCar, setSelectedCar] = useState<string>('');
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchCars = async () => {
-      const { data, error } = await supabase
-        .from('iRacing Cars')
-        .select('CarName')
-        .order('CarName', { ascending: true });
+      try {
+        setIsLoading(true);
+        const { data, error } = await supabase
+          .from('iRacing Cars')
+          .select('CarName')
+          .order('CarName', { ascending: true });
 
-      if (error) {
-        console.error('Error fetching cars:', error);
-      } else if (data) {
-        setCars(data);
+        if (error) throw error;
+
+        const formattedCars = data.map(car => ({
+          value: car.CarName,
+          label: car.CarName
+        }));
+        console.log('Formatted cars:', formattedCars);
+        setCars(formattedCars);
+      } catch (err) {
+        console.error('Error fetching cars:', err);
+        setError('Failed to load cars. Please try again later.');
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchCars();
   }, []);
 
-  const handleSelect = (carName: string) => {
-    setSelectedCar(carName);
-    setIsOpen(false);
-    console.log('Selected car:', carName);
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCar(event.target.value);
+    console.log('Selected car:', event.target.value);
   };
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    <div className="max-w-[400px] w-full">
+      <select
+        value={selectedCar}
+        onChange={handleSelect}
+        className="w-full p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        {selectedCar || 'Select a car'}
-      </button>
-      {isOpen && (
-        <ul className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
-          {cars.map((car) => (
-            <li
-              key={car.CarName}
-              onClick={() => handleSelect(car.CarName)}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-            >
-              {car.CarName}
-            </li>
-          ))}
-        </ul>
-      )}
+        <option value="">Select a car...</option>
+        {cars.map((car) => (
+          <option key={car.value} value={car.value}>
+            {car.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
-}
+};
+
+export default CarSelector;
