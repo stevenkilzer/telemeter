@@ -57,18 +57,18 @@ export function SidebarLeft() {
       collapsible="icon"
       side="left"
     >
-      <SidebarHeader className="h-[40px] flex mb-1 mt-2.5">
+      <SidebarHeader className="h-[40px] flex mb-0 mt-3">
         <div className="text-lg font-medium pl-2 flex items-center">
           {state === "expanded" ? (
             <Image
               src={theme === 'dark' ? "/g61-wordmark-dark.svg" : "/g61-wordmark-light.svg"}
               alt="G61 Logo"
               width={120}
-              height={25.5}
+              height={25}
               priority
             />
           ) : (
-            "W"
+            "G"
           )}
         </div>
       </SidebarHeader>
