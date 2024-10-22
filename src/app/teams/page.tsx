@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { PageHeader } from '@/components/PageHeader';
-import { CardTeam } from '@/components/CardTeam'; ;
 
 export default function TeamsPage() {
   const teams = [
