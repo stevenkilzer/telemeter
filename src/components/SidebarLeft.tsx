@@ -17,6 +17,7 @@ const iconComponents = {
   Bell: dynamic(() => import('lucide-react').then((mod) => mod.Bell), { loading: () => <IconPlaceholder />, ssr: false }),
   BarChart2: dynamic(() => import('lucide-react').then((mod) => mod.BarChart2), { loading: () => <IconPlaceholder />, ssr: false }),
   Settings: dynamic(() => import('lucide-react').then((mod) => mod.Settings), { loading: () => <IconPlaceholder />, ssr: false }),
+    Wrench: dynamic(() => import('lucide-react').then((mod) => mod.Wrench), { loading: () => <IconPlaceholder />, ssr: false }), // New icon for Setups
   Users: dynamic(() => import('lucide-react').then((mod) => mod.Users), { loading: () => <IconPlaceholder />, ssr: false }),
   Radio: dynamic(() => import('lucide-react').then((mod) => mod.Radio), { loading: () => <IconPlaceholder />, ssr: false }),
   Ghost: dynamic(() => import('lucide-react').then((mod) => mod.Ghost), { loading: () => <IconPlaceholder />, ssr: false }),

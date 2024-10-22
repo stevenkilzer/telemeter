@@ -35,6 +35,8 @@ export function PageHeader({ title, subtitle, primaryCTA, secondaryCTA }: PageHe
           </div>
         )}
       </div>
+      <div className="border-t border-border pt-5"></div>
     </div>
+    
   );
 }

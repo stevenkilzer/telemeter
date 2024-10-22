@@ -2,7 +2,7 @@ import { PageHeader } from '@/components/PageHeader';
 
 export default function SetupsPage() {
   return (
-    <div className="space-y-6">
+    <div className="">
       <PageHeader
         title="Setups"
         subtitle="Manage and optimize your vehicle setups"

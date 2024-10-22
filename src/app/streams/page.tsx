@@ -2,7 +2,7 @@ import { PageHeader } from '@/components/PageHeader';
 
 export default function StreamsPage() {
   return (
-    <div className="space-y-6">
+    <div className="">
       <PageHeader
         title="Streams"
         subtitle="Nothing on TV? Too tired to race? How about watching what other Garage 61 members are up to?"

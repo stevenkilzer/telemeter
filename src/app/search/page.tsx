@@ -24,13 +24,13 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="">
       <PageHeader
         title="Search"
         subtitle="Find Content & Laps"
       />
-      <div className="border-t border-border pt-6">
-        <div className="space-y-4 max-w-[512px] w-full">
+      <div className="">
+        <div className="space-y-6 max-w-[512px] w-full">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Search className="h-4 w-4 text-gray-500" />

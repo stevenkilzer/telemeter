@@ -19,7 +19,7 @@ export default function TeamsPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="">
       <PageHeader
         title="Teams"
         subtitle="Join a team to drive, learn, and compete with the racing community."

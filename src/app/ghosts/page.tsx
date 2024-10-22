@@ -2,7 +2,7 @@ import { PageHeader } from '@/components/PageHeader';
 
 export default function GhostsPage() {
   return (
-    <div className="space-y-6">
+    <div className="">
       <PageHeader
         title="Ghosts"
         subtitle="Ghost laps added to any of your ghost lap collections are synchronized directly to your PC."
