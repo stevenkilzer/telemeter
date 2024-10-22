@@ -1,59 +1,94 @@
 import React from 'react';
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Clock, Users, MapPin } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
+import { Clock, Car, Flag, Timer, ChevronRight } from "lucide-react";
+
+interface SessionDetail {
+  session: 'Offline Testing' | 'Practice' | 'Qualify' | 'Race';
+  laps: number;
+  fastestLap: string;
+  timeOnTrack: string;
+}
 
 interface CardEventProps {
-  title: string;
   date: string;
-  time: string;
-  track: string;
-  participants: number;
-  maxParticipants: number;
-  status: 'upcoming' | 'in-progress' | 'completed';
+  circuit: string;
+  car: string;
+  totalLaps: number;
+  sessions: SessionDetail[];
+  onSessionClick?: (session: SessionDetail) => void;
 }
 
 export const CardEvent: React.FC<CardEventProps> = ({
-  title,
   date,
-  time,
-  track,
-  participants,
-  maxParticipants,
-  status
+  circuit,
+  car,
+  totalLaps,
+  sessions,
+  onSessionClick
 }) => {
-  const statusColors = {
-    'upcoming': 'bg-primary/10 text-primary hover:bg-primary/20',
-    'in-progress': 'bg-orange-500/10 text-orange-500 hover:bg-orange-500/20',
-    'completed': 'bg-muted text-muted-foreground hover:bg-muted/80'
-  };
-
   return (
-    <Card className="hover:border-primary/50 transition-colors">
-      <CardHeader className="space-y-1">
-        <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-lg">{title}</h3>
-          <Badge className={statusColors[status]} variant="secondary">
-            {status.replace('-', ' ')}
-          </Badge>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-3">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Clock className="mr-2 h-4 w-4" />
-            <span>{date} at {time}</span>
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem
+        value="event"
+        className="border-b border-x-0 border-t-0 rounded-none py-0"
+      >
+        <AccordionTrigger className="hover:no-underline py-3 pr-4 [&>svg]:ml-0 [&>svg]:mr-4">
+          <div className="flex w-full items-center">
+            <div className="grid grid-cols-[1fr_1fr_1fr_1fr_24px] w-full gap-4">
+              <div className="flex items-center text-sm">
+                <Clock className="w-4 h-4 mr-2 text-muted-foreground" />
+                {date}
+              </div>
+              <div className="flex items-center text-sm">
+                <Timer className="w-4 h-4 mr-2 text-muted-foreground" />
+                {totalLaps} laps
+              </div>
+              <div className="flex items-center text-sm">
+                <Flag className="w-4 h-4 mr-2 text-muted-foreground" />
+                {circuit}
+              </div>
+              <div className="flex items-center text-sm">
+                <Car className="w-4 h-4 mr-2 text-muted-foreground" />
+                {car}
+              </div>
+              <div className="flex justify-end">
+                {/* Empty div for chevron alignment */}
+              </div>
+            </div>
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <MapPin className="mr-2 h-4 w-4" />
-            <span>{track}</span>
+        </AccordionTrigger>
+        <AccordionContent>
+          <div className="py-2 space-y-1">
+            {sessions.map((session, index) => (
+              <div
+                key={index}
+                onClick={() => onSessionClick?.(session)}
+                className={cn(
+                  "grid grid-cols-[1fr_1fr_1fr_1fr_24px] gap-4 py-2 pl-4 pr-8 text-sm items-center",
+                  "cursor-pointer transition-colors duration-200",
+                  "hover:bg-secondary",
+                  index % 2 === 0 ? "" : "",
+                  "group"
+                )}
+              >
+                <div>{session.session}</div>
+                <div>{session.laps} laps</div>
+                <div>{session.fastestLap}</div>
+                <div>{session.timeOnTrack}</div>
+                <div className="flex justify-end">
+                  <ChevronRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Users className="mr-2 h-4 w-4" />
-            <span>{participants} / {maxParticipants} participants</span>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };

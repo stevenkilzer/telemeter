@@ -7,33 +7,57 @@ import { CardEvent } from '@/components/CardEvent';
 export default function SamplePage() {
   const events = [
     {
-      title: "Weekly Sprint Race",
-      date: "Oct 24, 2024",
-      time: "20:00",
-      track: "Watkins Glen",
-      participants: 18,
-      maxParticipants: 24,
-      status: 'upcoming' as const
+      date: "Oct 24, 2024 - 20:00",
+      circuit: "Watkins Glen",
+      car: "Porsche 911 GT3",
+      totalLaps: 85,
+      sessions: [
+        {
+          session: "Practice" as const,
+          laps: 28,
+          fastestLap: "1:48.234",
+          timeOnTrack: "45m"
+        },
+        {
+          session: "Qualify" as const,
+          laps: 12,
+          fastestLap: "1:47.891",
+          timeOnTrack: "15m"
+        },
+        {
+          session: "Race" as const,
+          laps: 45,
+          fastestLap: "1:48.102",
+          timeOnTrack: "1h 12m"
+        }
+      ]
     },
     {
-      title: "Endurance Practice",
-      date: "Oct 24, 2024",
-      time: "18:30",
-      track: "Spa-Francorchamps",
-      participants: 12,
-      maxParticipants: 20,
-      status: 'in-progress' as const
-    },
-    {
-      title: "Rookie Training",
-      date: "Oct 23, 2024",
-      time: "19:00",
-      track: "Lime Rock Park",
-      participants: 8,
-      maxParticipants: 8,
-      status: 'completed' as const
+      date: "Oct 23, 2024 - 19:00",
+      circuit: "Spa-Francorchamps",
+      car: "Ferrari 488 GT3",
+      totalLaps: 42,
+      sessions: [
+        {
+          session: "Practice" as const,
+          laps: 30,
+          fastestLap: "2:15.567",
+          timeOnTrack: "45m"
+        },
+        {
+          session: "Offline Testing" as const,
+          laps: 12,
+          fastestLap: "2:16.234",
+          timeOnTrack: "20m"
+        }
+      ]
     }
   ];
+
+  const handleSessionClick = (session: any) => {
+    console.log('Session clicked:', session);
+    // Add your navigation or modal logic here
+  };
 
   return (
     <div>
@@ -43,21 +67,15 @@ export default function SamplePage() {
       />
       <div className="space-y-8">
         <div>
-          <h2 className="text-lg font-semibold mb-4">Upcoming Events</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {events.map((event) => (
+          <div className="space-y-0">
+            {events.map((event, index) => (
               <CardEvent
-                key={event.title}
+                key={index}
                 {...event}
+                onSessionClick={handleSessionClick}
               />
             ))}
           </div>
-        </div>
-
-        {/* Placeholder for future sections */}
-        <div>
-          <h2 className="text-lg font-semibold mb-4">Other Activity</h2>
-          <p className="text-muted-foreground">This is where additional activity content will go.</p>
         </div>
       </div>
     </div>
