@@ -64,7 +64,7 @@ export function SidebarLeft() {
               src={theme === 'dark' ? "/g61-wordmark-dark.svg" : "/g61-wordmark-light.svg"}
               alt="G61 Logo"
               width={120}
-              height={25}
+              height={24.5}
               priority
             />
           ) : (
