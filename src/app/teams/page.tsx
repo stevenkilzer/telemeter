@@ -34,16 +34,7 @@ export default function TeamsPage() {
         }}
       />
 
-      <div className="space-y-2">
-        {teams.map((team, index) => (
-          <CardTeam
-            key={index}
-            title={team.title}
-            image={team.image}
-            activities={team.activities}
-          />
-        ))}
-      </div>
+    
     </div>
   );
 }
