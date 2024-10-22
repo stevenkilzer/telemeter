@@ -23,7 +23,7 @@ export function PageHeader({ title, subtitle, primaryCTA, secondaryCTA }: PageHe
         <h1 className="text-2xl font-semibold mb-2">{title}</h1>
         {subtitle && <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>}
         {(primaryCTA || secondaryCTA) && (
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             {primaryCTA && (
               <Button onClick={primaryCTA.onClick}>{primaryCTA.label}</Button>
             )}
