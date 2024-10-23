@@ -139,7 +139,7 @@ export function SidebarLeft() {
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild tooltip="Setups">
                     <Link href="/setups">
-                      <IconComponent name="Settings" className="w-5 h-5" />
+                      <IconComponent name="Wrench" className="w-5 h-5" />
                       <span>Setups</span>
                     </Link>
                   </SidebarMenuButton>
