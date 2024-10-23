@@ -157,24 +157,24 @@ export default function SessionPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.laps.map((lap, index) => (
-                  <TableRow
-                    key={lap.LapID}
-                    className={`
-                      ${index !== data.laps.length - 1 ? 'border-b border-border' : ''}
-                      [&>td]:border-0
-                    `}
-                  >
-                    <TableCell>{lap.Lap}</TableCell>
-                    <TableCell>{lap['Lap time']}</TableCell>
-                    <TableCell>{lap['Fuel used']?.toFixed(2) || '-'} L</TableCell>
-                    <TableCell className="space-x-2">
-                      {lap['Pit in'] === '1' && <Badge variant="outline">In Lap</Badge>}
-                      {lap['Pit out'] === 1 && <Badge variant="outline">Out Lap</Badge>}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+  {data.laps.map((lap: LapData, index: number) => (
+    <TableRow
+      key={lap.LapID}
+      className={`
+        ${index !== data.laps.length - 1 ? 'border-b border-border' : ''}
+        [&>td]:border-0
+      `}
+    >
+      <TableCell>{lap.Lap}</TableCell>
+      <TableCell>{lap['Lap time']}</TableCell>
+      <TableCell>{lap['Fuel used']?.toFixed(2) || '-'} L</TableCell>
+      <TableCell className="space-x-2">
+        {lap['Pit in'] === '1' && <Badge variant="outline">In Lap</Badge>}
+        {lap['Pit out'] === 1 && <Badge variant="outline">Out Lap</Badge>}
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
             </Table>
           </div>
         </div>
