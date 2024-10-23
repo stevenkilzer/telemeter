@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Accordion,
   AccordionContent,
@@ -21,7 +24,6 @@ interface CardEventProps {
   car: string;
   totalLaps: number;
   sessions: SessionDetail[];
-  onSessionClick?: (session: SessionDetail) => void;
 }
 
 export const CardEvent: React.FC<CardEventProps> = ({
@@ -30,8 +32,13 @@ export const CardEvent: React.FC<CardEventProps> = ({
   car,
   totalLaps,
   sessions,
-  onSessionClick
 }) => {
+  const router = useRouter();
+
+  const handleSessionClick = (session: SessionDetail) => {
+    router.push('/event/session');  // Navigate to the session page
+  };
+
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem
@@ -68,7 +75,7 @@ export const CardEvent: React.FC<CardEventProps> = ({
             {sessions.map((session, index) => (
               <div
                 key={index}
-                onClick={() => onSessionClick?.(session)}
+                onClick={() => handleSessionClick(session)}
                 className={cn(
                   "grid grid-cols-[1fr_1fr_1fr_1fr_24px] gap-4 py-2 pl-4 pr-8 text-sm items-center",
                   "cursor-pointer transition-colors duration-200",

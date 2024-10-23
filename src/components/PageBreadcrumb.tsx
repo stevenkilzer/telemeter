@@ -30,7 +30,7 @@ export function PageBreadcrumb() {
         {pathSegments.map((segment, index) => {
           const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
           const isLast = index === pathSegments.length - 1;
-          const displayText = index === 0 ? toTitleCase(segment) : segment;
+          const displayText = toTitleCase(segment);  // Apply toTitleCase to all segments
 
           return (
             <React.Fragment key={segment}>
