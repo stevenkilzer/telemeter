@@ -30,7 +30,7 @@ export function PageBreadcrumb() {
         {pathSegments.map((segment, index) => {
           const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
           const isLast = index === pathSegments.length - 1;
-          const displayText = toTitleCase(segment);  // Apply toTitleCase to all segments
+          const displayText = toTitleCase(segment);
 
           return (
             <React.Fragment key={segment}>
@@ -39,7 +39,7 @@ export function PageBreadcrumb() {
                 {isLast ? (
                   <BreadcrumbPage>{displayText}</BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={href} className="text-foreground hover:text-primary">
+                  <BreadcrumbLink href={href}>
                     {displayText}
                   </BreadcrumbLink>
                 )}
