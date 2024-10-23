@@ -33,8 +33,13 @@ const iconComponents = {
 
 export function SidebarLeft() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { state } = useSidebar();
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,23 +57,38 @@ export function SidebarLeft() {
     return <Icon className={className} />;
   };
 
+  // Prevent flash of incorrect theme
+  if (!mounted) {
+    return <SidebarHeader className="h-[40px] flex mb-0 mt-3">
+      <div className={`text-lg font-medium ${state === "expanded" ? "pl-2" : "pl-1"} flex items-center`}>
+        {/* Optional loading state */}
+      </div>
+    </SidebarHeader>;
+  }
+
   return (
     <Sidebar
       collapsible="icon"
       side="left"
     >
       <SidebarHeader className="h-[40px] flex mb-0 mt-3">
-        <div className="text-lg font-medium pl-2 flex items-center">
+        <div className={`text-lg font-medium ${state === "expanded" ? "pl-2" : "pl-1"} flex items-center`}>
           {state === "expanded" ? (
             <Image
-              src={theme === 'dark' ? "/g61-wordmark-dark.svg" : "/g61-wordmark-light.svg"}
+              src={resolvedTheme === 'dark' ? "/g61-wordmark-dark.svg" : "/g61-wordmark-light.svg"}
               alt="G61 Logo"
               width={100}
               height={20}
               priority
             />
           ) : (
-            "G"
+            <Image
+              src={resolvedTheme === 'dark' ? "/g61-small-wordmark-dark.svg" : "/g61-small-wordmark-light.svg"}
+              alt="G61 Logo"
+              width={24}
+              height={24}
+              priority
+            />
           )}
         </div>
       </SidebarHeader>
