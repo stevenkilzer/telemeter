@@ -123,8 +123,8 @@ export default function SessionPage() {
       />
       
       {Object.entries(groupedData).map(([run, data]) => (
-        <div key={run} className="space-y-0 mb-12">
-          <Card className="rounded-none border-0 border-x border-t">
+        <div key={run} className="space-y-0 mb-6">
+          <Card className="rounded-none border-0 border-x border-t bg-card">
             <CardHeader>
               <CardTitle>Run {run}</CardTitle>
             </CardHeader>
@@ -146,7 +146,7 @@ export default function SessionPage() {
             </CardContent>
           </Card>
 
-          <div className="border border-border">
+          <div className="border border-border bg-card">
             <Table>
               <TableHeader>
                 <TableRow className="border-b border-border">
