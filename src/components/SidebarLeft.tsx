@@ -71,8 +71,8 @@ export function SidebarLeft() {
       collapsible="icon"
       side="left"
     >
-      <SidebarHeader className=" flex mb-0">
-        <div className={`text-lg font-medium ${state === "expanded" ? "h-6 pl-2 mt-3" : "h-4 pl-1 mt-[7px]"} flex items-center`}>
+      <SidebarHeader className=" flex ">
+        <div className={`text-lg font-medium ${state === "expanded" ? "mb-[8px] pl-2 mt-[13px]" : "mb-[12px] pl-1 mt-[9px]"} flex items-center`}>
           {state === "expanded" ? (
             <Image
               src={resolvedTheme === 'dark' ? "/g61-wordmark-dark.svg" : "/g61-wordmark-light.svg"}
