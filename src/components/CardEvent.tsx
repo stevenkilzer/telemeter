@@ -24,19 +24,20 @@ interface CardEventProps {
   car: string;
   totalLaps: number;
   sessions: SessionDetail[];
+  key?: number; // Added to handle the index prop
 }
 
-export const CardEvent: React.FC<CardEventProps> = ({
+export const CardEvent = React.forwardRef<HTMLDivElement, CardEventProps>(({
   date,
   circuit,
   car,
   totalLaps,
   sessions,
-}) => {
+}, ref) => {
   const router = useRouter();
 
   const handleSessionClick = (session: SessionDetail) => {
-    router.push('/event/session');  // Navigate to the session page
+    router.push('/event/session');
   };
 
   return (
@@ -98,4 +99,6 @@ export const CardEvent: React.FC<CardEventProps> = ({
       </AccordionItem>
     </Accordion>
   );
-};
+});
+
+CardEvent.displayName = 'CardEvent';
