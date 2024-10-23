@@ -54,11 +54,6 @@ export default function SamplePage() {
     }
   ];
 
-  const handleSessionClick = (session: any) => {
-    console.log('Session clicked:', session);
-    // Add your navigation or modal logic here
-  };
-
   return (
     <div>
       <PageHeader
@@ -72,7 +67,6 @@ export default function SamplePage() {
               <CardEvent
                 key={index}
                 {...event}
-                onSessionClick={handleSessionClick}
               />
             ))}
           </div>
