@@ -1,20 +1,37 @@
 'use client';
 
 import { PageHeader } from '@/components/PageHeader';
+import { NewAnalysisDialog } from '@/components/NewAnalysisDialog';
+import { AnalysisList } from '@/components/AnalysisList';
+import { useAnalyses } from '@/hooks/useAnalyses';
 
 export default function AnalysisPage() {
+  const { analyses, addAnalysis } = useAnalyses();
+
+  const handleCreateAnalysis = (data: { title: string; description: string }) => {
+    addAnalysis({
+      title: data.title,
+      description: data.description,
+      laps: [],
+    });
+  };
+
   return (
-    <div className="space-y-6">
+    <div>
       <PageHeader
         title="Analysis"
-        subtitle="Select any number of laps to analyze. The first lap listed is the reference lap to which all other laps will be compared."
+        subtitle="Compare and analyze lap data"
         primaryCTA={{
           label: "Create New Analysis",
-          onClick: () => console.log("Primary action clicked"),
+          onClick: () => document.querySelector<HTMLButtonElement>('[data-new-analysis-trigger]')?.click(),
         }}
       />
-      {/* Add your analysis content here */}
-      <p>Implement your lap analysis functionality in this section.</p>
+      <div className="hidden">
+        <NewAnalysisDialog onCreateAnalysis={handleCreateAnalysis} />
+      </div>
+      <div className="mt-6">
+        <AnalysisList analyses={analyses} />
+      </div>
     </div>
   );
 }
